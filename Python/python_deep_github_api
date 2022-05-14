@@ -1,0 +1,10 @@
+API = 응용 프로그램 프로그래밍 인터페이스(Application Programming Interface)
+
+Parameter = 함수를 사용할 때 필요한 도구를 parameter라고 함
+
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+위 링크 중 {city name}, {API key} -> parameter 라고 함
+
+city = "Seoul"
+apikey = "815d8667b05884efde70d922821a106d"
+api = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"

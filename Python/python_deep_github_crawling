@@ -1,0 +1,101 @@
+1~7강
+  requests = 여러 개의 함수가 모여있는 모듈 / get = requests 모듈 안에 속해있는 함수 중 하나 /
+  get.form(get의 형태) = requests.get("url")
+  -> <Response [200]>이 나옴 /  성공했다는 의미
+  -> print(response.text) -> response에서 텍스트만 추출하는 것
+#   
+
+    import requests 
+
+    url = "https://daum.net"
+    response = requests.get(url)
+
+    print(response.text)
+
+8강 BeautifulSoup
+    import requests 
+    from bs4 import BeautifulSoup
+
+    url = "https://daum.net"
+    response = requests.get(url)
+
+    print(type(response.text))
+
+    print(type(BeautifulSoup(response.text, "html.parser")))
+
+
+    <class 'str'> -> 결과값이 다르게 나온다
+    <class 'bs4.BeautifulSoup'> -> 이유는 response.text의 경우는 string이 맞지만 / BeautifulSoup의 경우에는 BS라는 통에 모든 것들을 담아둔 것
+
+ 9강
+ Parsing -> 데이터를 의미있는 값으로 변환시켜주는 것
+ Parser -> html.parser -> html
+ 
+import requests 
+from bs4 import BeautifulSoup
+url = "https://daum.net"
+response = requests.get(url)
+print(type(response.text))
+soup = BeautifulSoup(response.text, "html.parser")
+print(soup.title)
+
+response라는 변수에 요청하는 함수를 담은 것 -> 그래서 변수.text / .encoding / .title 등 여러 기능을 사용할 수 있게 된 것
+그래서 soup 역시 beautifulSoup 라는 통에 해당 데이터를 모아놓고 의미있게 분류 시켜놓은 것 => 그래서 soup.title 사용 가능
+
+
+10강 ~ 12강
+
+    import requests 
+    from bs4 import BeautifulSoup
+
+    url = "https://naver.com"
+    response = requests.get(url)
+
+    print(type(response.text))
+
+    soup = BeautifulSoup(response.text, "html.parser", from_encoding="cp949")
+    response.encoding = "utf-8"
+
+    print(soup.title)
+    print(soup.title.string)
+    print(soup.span)
+    print(soup.findAll('span'))
+
+    file = open("daum.html", "w")
+    file.write(response.text)
+    file.close() 
+
+    daum.html이라는 파일을 만들고 열겠다.
+    file에 response에서 text를 추출하여 넣겠다
+    연 file을 닫겠다
+    ->  다음 폴더가 만들어짐
+    그 중에서 실시간 검색어의 공통점을 찾기 위해 파일을 열고 확인함.
+    확인 도중 1. a 태그라는 공통점을 가지고 있어서
+    print(soup.findAll("a"))
+    2. class = "link_favorsch"라는 게 있음
+    두 개의 공통점에 해당하는 실시간 검색어 text를 불러오기 위해서
+    print(soup.findAll("a", "link_favorsch"))
+    다음 강의를 위해서 results = soup.findAll("a", "link_favorsch")
+
+마무리 부분 잘 모르겠다...
+네이버와 다음의 실시간 검색어가 사라져서 제대로 한 건지 잘 모르겠음
+추가로 response.text, 'html.parser' 부분에 추가로 작성되는 부분이 존재함 강의 QnA를 통해 확인해야함
+from bs4 import BeautifulSoup
+import requests
+from datetime import datetime
+
+url = "http://www.daum.net/"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+rank = 1
+
+results = soup.findAll('a','link_favorsch')
+
+search_rank_file = open("rankresult.txt","a")
+
+print(datetime.today().strftime("%Y년 %m월 %d일의 실시간 검색어 순위입니다.\n"))
+
+for result in results:
+    search_rank_file.write(str(rank)+"위:"+result.get_text()+"\n")
+    print(rank,"위 : ",result.get_text(),"\n")
+    rank += 1
