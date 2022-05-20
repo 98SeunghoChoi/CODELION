@@ -1,10 +1,100 @@
-API = 응용 프로그램 프로그래밍 인터페이스(Application Programming Interface)
+# API = 응용 프로그램 프로그래밍 인터페이스(Application Programming Interface)
 
-Parameter = 함수를 사용할 때 필요한 도구를 parameter라고 함
+# Parameter = 함수를 사용할 때 필요한 요소를 parameter라고 함
 
-https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-위 링크 중 {city name}, {API key} -> parameter 라고 함
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}  
+        ==>     위 링크 중 {city name}, {API key} -> parameter 라고 함
 
 city = "Seoul"
 apikey = "815d8667b05884efde70d922821a106d"
 api = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
+
+        -> city name을 city로 바꾸고 / API key를 apikey로 바꾸면 됨
+api = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apikey}"
+
+# f-String / 우리가 원하는 문자열에 알맞은 문자를 넣어줄 수 있음
+
+우리가 만든 url -> ? 를 기준으로 앞쪽은 공통 url / 뒤쪽은 요청에 필요한 값(parameter)
+
+
+---------------------------------------------------------------------------------------
+
+<8강>
+
+import requests
+import json 
+
+city = "Seoul"
+apikey = "815d8667b05884efde70d922821a106d"
+api = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apikey}"
+
+result = requests.get(api)
+print(result.text)
+
+data = json.loads(result.text) // print(type(result)) 만 해버리면, 200이라는 수가 뜨면서 성공했다는 말만 뜸 / 그래서 변수.text를 입력해줘야함
+
+print(type(result.text))
+print(type(data))
+
+---------------------------------------------------------------------------------------
+
+<최종>
+
+import requests /////                           # url 주소에 요청값을 불러주는 모듈
+import json ///////                             # "javascript obejct notation => string => dict 형태로 바꿔주는 것"
+
+city = "Seoul"                                  # url에 있는 city에 해당하는 변수(필요한 parameter)
+apikey = "815d8667b05884efde70d922821a106d"     # url에 있는 apikey에 해당하는 변수이자 내 api주소(필요한 parameter)
+lang = "kr"                                     # language = 한국어라는 parameter
+
+api = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apikey}&lang={lang}&units=metric" 
+
+                        # ?를 기준으로 -앞- 은 공통 url / -뒤-는 요청하기 위해 필요한 parameter의 집합이라고 생각
+                        # city와 apikey는 필수지만, lang / units는 부수적인 parameter / lang는 parameter / {lang}은 변수
+                        # units = metric 이건 화씨를 섭씨로 바꿔주는 것 
+
+response = requests.get(api)             # requests 모듈 중 get 함수를 사용하여 api라는 parameter를 통해 요청값을 보내는 것을 response라는 변수에 저장
+data = json.loads(response.text)         # data = json.loads(response.text) / response.text를 이용해 text만 추출 / String => dictionary 형태로 바꿔줌
+
+# print(data)를 하면
+#
+{       'coord': {'lon': 126.9778, 'lat': 37.5683}, 
+        'weather': [{'id': 800, 'main': 'Clear', 'description': '맑음', 'icon': '01d'}], 
+        'base': 'stations', 
+        'main': {'temp': 21.43, 'feels_like': 20.26, 'temp_min': 17.69, 'temp_max': 22.66, 'pressure': 1013, 'humidity': 24}, 
+        'visibility': 10000, 
+        'wind': {'speed': 6.69, 'deg': 270}, 
+        'clouds': {'all': 0}, 
+        'dt': 1652593890, 
+        'sys': {'type': 1, 'id': 8105, 'country': 'KR', 'sunrise': 1652559798, 'sunset': 1652610824},
+        'timezone': 32400, 
+        'id': 1835848, 
+        'name': 'Seoul', 
+        'cod': 200
+}
+
+        # 형태를 살펴보면, dictionary 형태이다 -> Key / value로 나눠서 호출하면 됨
+                # 다른 것들은 key:value 이런 식으로 되어있음
+                        # print(data["name"])
+                        # print(data["coord"]["lon"])와 같이 작성하면 됨
+                # 하지만 list가 포함 된 것도 존재
+                        # print(data["weather"][0]["id"])
+                        # print(data["weather"][0]["temp_min"])
+                # 이런 식으로 추출할 수 있음
+
+
+print(data['name'],"의 날씨입니다.")
+print("날씨는", data["weather"][0]["description"],"입니다.")
+print("현재 온도는", data["main"]["temp"],"입니다.")
+print("하지만 체감 온도는", data["main"]["feels_like"],"입니다.")
+print("최저 기온은", data["main"]["temp_min"],"입니다.")
+print("최저 기온은", data["main"]["temp_max"],"입니다.")
+print("습도는", data["main"]["humidity"],"입니다.")
+print("기압은", data["main"]["pressure"],"입니다.")
+print("풍향은", data["wind"]["deg"],"입니다.")
+print("풍속은", data["wind"]["speed"],"입니다.")
+
+        # 그리고 print("a", "b", "c", "입니다.") 와 같이 쉼표를 이용하면 한 줄로 출력됨
+        # data = json.loads(response.text)
+                # data라는 변수에 담은 만큼 data["abcdef"] 이런 식으로 [value] 값을 작성하여 호출가능
+                # print("a", data["abcd"][0]["dasda"], "입니다.")

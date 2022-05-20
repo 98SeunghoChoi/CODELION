@@ -1,0 +1,19 @@
+-----------------------------------------------------------------
+<1강 ~ 4강>
+
+SMTP = 간단하게 메일을 보내기 위한 약속
+
+A 라는  Email Client가 SMTP 프로토콜을 이용해서 Email Server에 메일을 저장
+Email Server (a) -> SMTP -> Email server (b) -> imap -> Email client (b)
+다시
+Email client (b) -> SMTP -> Email server (b) -> SMTP -> Email server (a) -> IMAP -> Client (a)
+
+SMTP 서버를 이용해서 우리가 원하는 곳으로 메일을 보낼 수 있다.
+
+-----------------------------------------------------------------
+
+<5강>
+
+1. SMTP 메일 서버를 연결한다.
+2. SMTP 메일 서버에 로그인한다.
+3. SMTP 메일 서버로 

@@ -80,22 +80,31 @@ response라는 변수에 요청하는 함수를 담은 것 -> 그래서 변수.t
 마무리 부분 잘 모르겠다...
 네이버와 다음의 실시간 검색어가 사라져서 제대로 한 건지 잘 모르겠음
 추가로 response.text, 'html.parser' 부분에 추가로 작성되는 부분이 존재함 강의 QnA를 통해 확인해야함
-from bs4 import BeautifulSoup
-import requests
-from datetime import datetime
 
-url = "http://www.daum.net/"
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'html.parser')
-rank = 1
 
-results = soup.findAll('a','link_favorsch')
 
-search_rank_file = open("rankresult.txt","a")
+from bs4 import BeautifulSoup                      / bs4라는 모듈에서 BeautifulSoup 함수 꺼내오기
+import requests                                    / requests라는 모듈을 가져와준 것
+from datetime import datetime                      / datetime = 시간 표시해주는 모듈, 함수
 
-print(datetime.today().strftime("%Y년 %m월 %d일의 실시간 검색어 순위입니다.\n"))
+url = "http://www.daum.net/"                       / url이라는 변수에 담고
+response = requests.get(url)                       / response라는 변수에 requests 모듈 중 get 함수를 사용하여 url의 데이터를 추출
+soup = BeautifulSoup(response.text, 'html.parser') / BeautifulSoup라는 함수는 python에서 url data를 추출할 때 (자료, "html-parser") 형식으로 사용함.
+rank = 1                                           / rank가 1부터 시작한다는 문장
+
+results = soup.findAll('a','link_favorsch')        / findAll은 변수에 해당하는 것 중 ("여기")에 들어가 있는 것을 전부 찾아줌.
+search_rank_file = open("rankresult.txt","a")      / open("파일이름.형식", "w/r/a") 형식으로 작성함 write read add
+
+print(datetime.today().strftime("%Y년 %m월 %d일의 실시간 검색어 순위입니다.\n")) /datetime.today().strftime("%Y년 %m월 %d일의 실시간 검색어 순위입니다.") 형식으로 작성하면 됨)
 
 for result in results:
-    search_rank_file.write(str(rank)+"위:"+result.get_text()+"\n")
+    search_rank_file.write(str(rank)+"위:"+result.get_text()+"\n") / 
     print(rank,"위 : ",result.get_text(),"\n")
     rank += 1
+
+result라는 변수에 results값을 대입해서 for문을 실행한다
+
+# search_rank_file이라는 파일에 write(작성)한다 (str(rank)+"위 :"+results.get_text()+"\n")
+# print(rank, "위 :", results.get_text(), "\n")
+# rank += 1 이렇게 하면 rank = 1, rank = 2 이런 식으로 하나씩 더해짐
+

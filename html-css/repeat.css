@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800&display=swap');
+
+* {
+    font-family: 'Montserrat';
+}
+
+body, h1, h2 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    text-align: right;
+}
+
+h1 {   
+    font-size: 36px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.under-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7c7c7c;
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: lighter;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.mainbox { 
+    border: 1px solid #ebebeb;
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
+    padding: 30px;
+    margin: 30px;
+    
+}
+
+.about-me-text {
+    font-size: 10px;
+    line-height: 16px;
+}
+
+.wrap-div {
+    overflow: hidden;
+}
+
+.Awe-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Awe-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Awe-third {
+    font-size: 10px;
+}
+
+.Awe-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+.Min-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Min-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Min-third {
+    font-size: 10px;
+}
+
+.Min-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+.Free-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Free-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Free-third {
+    font-size: 10px;
+}
+
+.Free-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+.Front-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Front-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Front-third {
+    font-size: 10px;
+}
+
+.Front-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+.Lion-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Lion-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Lion-third {
+    font-size: 10px;
+}
+
+.Lion-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+
+.Open-source-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Open-source-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Open-source-third {
+    font-size: 10px;
+}
+
+.Open-source-fourth {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+.Mut-Uni-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.Mut-Uni-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Mut-Uni-third {
+    font-size: 10px;
+}
+
+.MutHigh-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.MutHigh-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.MutHigh-third {
+    font-size: 10px;
+}
+
+.OPA-first { 
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+.OPA-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.OPA-third {
+    font-size: 10px;
+}
+
+.Awa-first {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: left;
+}
+
+.Awa-second {
+    font-size: 10px;
+    font-weight: bold;
+    color: blakc;
+    float: right;
+}
+
+.Awa-third {
+    font-size: 10px;
+
+}
+
+.png-icon {
+    text-align: right;
+}
+
+footer { 
+    font-size: 10px;
+    color: #7c7c7c;
+    background-color: #1b1b1b;
+    text-align: center;
+    padding: 20px;
+}

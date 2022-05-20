@@ -1,0 +1,84 @@
+<1강 ~ 3강>
+from googletrans import Translator
+
+translator = Translator()
+sentence = input("번역할 문장을 입력해주세요 : ")
+detected = translator.detect(sentence)
+print(detected.lang)
+
+# 번역할 문장이 어느 나라 말인지 감지하는 역할을 함
+
+-------------------------------------------------------
+
+<3강 언어감지하기>
+
+translator = Translator()               # 1. 번역기를 만든다
+sentence = "안녕하세요 코드라이언입니다."      # 2. 언어 감지를 원하는 문장을 설정한다.
+detected = translator.detect(sentence)  # 3. 언어를 감지한다.
+
+print(detected.lang)                    # 어떤 언어를 입력했는지 알려줌
+
+<3강 마지막>
+translator = Translator()
+sentence = "안녕하세요 코드라이언입니다."
+
+detected = translator.detect(sentence)
+print(detected.lang)
+-------------------------------------------------------
+
+<4강 번역하기1>
+* translate(text, dest, src)
+            sentence, 도착어, optional
+
+1. 번역기를 만든다
+2. 번역을 원하는 문장을 설정한다
+3. 번역을 원하는 언어를 설정한다.
+4. 번역한다.
+
+from googletrans import Translator
+
+translator = Translator()
+sentence = "안녕하세요 코드라이언입니다."
+
+result = translator.translate(sentence, "en")
+print(result)
+
+-------------------------------------------------------
+
+<5강> 
+
+from googletrans import Translator                  / googletrans 모듈에서 Translator라는 함수 추출
+
+translator = Translator()                           / translator라는 변수에 Translator() 작동 시키는 거
+
+sentence = input("문장을 입력해주세요 : ")               / 사용자 개별 문장입력 가능하게 만드는 것
+dest= input("원하는 언어를 입력하세요 : ")                / 사용자가 원하는 언어 입력 가능하게 만드는 것
+
+result = (translator.translate(sentence, dest))     / translate(번역하고 싶은 문장, 도착 언어)
+detected = translator.detect(sentence)              / translator.detect -> 해당 언어에 대한 국가 분석
+
+print("============= 출력 결과 =============")
+print(detected.lang, ": ", sentence)                / result.lang = 출발어, " : ", sentence 
+print(result.dest, " : ", result.text)              / result.desc = 도착어, " : ", sentence
+print("============= 출력 결과 =============")
+
+-------------------------------------------------------
+<5강>
+import smtplib 
+
+SMTP_SERVER = "smtp.gmail.com" 
+SMTP_PORT = 465
+
+smtp = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)  # smtplib.SMTP(smtp서버, smtp포트(465))
+print(smtp)                                      # SSL은 구글에서 막힌 서버를 허용할 수 있게 만들어줌
+-------------------------------------------------------
+<6강>
+
+import smtplib
+
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 465
+
+smtp = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) 
+smtp.login("csh98103020@gmail.com", "matthew30~") -> 아이디, 비밀번호 입력 
+smtp.send_message()
