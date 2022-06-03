@@ -1,0 +1,66 @@
+static - 이론
+
+    웹 서비스 내부에서 다루는 데이터는
+        1. static 웹 서비스 내에서 사용자들을 위해 미리 준비된 데이터 (ex) css, JavaScript, image)
+        2. media  사용자가 업로드한, 사용자에 의한 데이터라고 생각하면 됨
+    쉽게 설명하자면, 구글 사이트를 틀었을 때 가운데 나오는 google, 내 프로필 사진 등이 static
+
+장고에서는 settings.py에서 다음 세 가지 설정을 통해서 static 파일을 관리한다.
+    1. staticfiles_dirs(directory)
+    2. Static_url
+    3. static_root
+
+    1. staticfiles_dirs : static 파일들의 위치와 경로를 알려줌
+    2. static_root : static 파일들을 복사하여 모아놓을 경로
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    3. static_url : static 파일을 제공해주는 url
+
+
+똑같은 절차 따라하다가 myproject 안에 있는 settings.py 들어가서 보면
+# static_url = '/static/' 
+추가로 작성할 것
+
+# STATICFILES_DIRS = [
+    개발을 하는 데 있어서 STATIC FILES들이 위치한 경로를 적어주는 곳이다.
+# ]
+
+폴더 이름 Django_static = base directory 라고 한다.
+    그 바로 하위에 폴더인 static을 만드는데 이는 static이라는 폴더에 static과 관련된 부분을 관리할 것이기 때문에 만들어 줌 
+    -> 이 말을 코드로 적으면
+        STATICFILES_DIRS [
+            BASE_DIR / 'static',
+        ] 이렇게 적는 것..
+    그 후에 해당 폴더 안에, JavaScript / css / image 를 넣고 관리함.
+
+결론 : static은 정적인 css / JavaScript / image 를 뜻하고 이것들을 한 폴더 안에 만들어서 관리해야함.
+결론2 : 따라서 BASE_DIR 한 단계 아래에 static이라는 폴더를 만들어서 하위 폴더로 css / JavaScript / image 폴더를 만들어서 안에서 관리함
+결론 3: 그렇게 하기 위해서는 settings.py 안에 있는 static_url = "/static/" 이라는 것을 확인하고
+       해당 코드 아래에 STATICFILES_DIRS [
+        BASE_DIR / 'static',
+       ]
+       BASE_DIRECTORY 아래에 static이라는 폴더를 만들어서 관리해줘야함.
+
+* static 안에 있는 css를 html에 부르는 법
+    1. html 파일 맨 위에 작성해주고
+    {% load static %}
+        -> {% %} 장고의 템플릿 언어
+    2. 평소 html에 css를 연결하듯이
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"
+
+    번외. image 역시 같은 형태인데 
+    1. html에 들어가서 
+        <img src = "{% static 'image/침착맨.png' %}" width = 50%>
+    2. img 형태의 소스를 가져와서
+
+    추가 하나의 앱 안에서만 사용하는 static의 경우 -> app 폴더 안에 static을 깔고 해당 주소를 작성해줘야하는데
+    STATICFILES_DIRS [
+        BASE_DIR / 'static',
+        os.path.join(BASE_DIR, 'myapp', 'static')
+    ]
+
+마지막 
+    # STATIC_ROOT = 우리가 배포할 때 결국 static 파일을 어디에다 모을 것인지? 
+    STATIC_ROOT = os.path.join('폴더명')
+    그리고 터미널에
+    python manage.py collectstatic을 하게 될 경우
+        위에 폴더명으로 폴더 하나가 만들어지면 지금까지 만든 모든 static 파일들이 저 폴더로 모이게 됨.

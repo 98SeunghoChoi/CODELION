@@ -1,0 +1,18 @@
+bootstrap이 무엇인가?
+    bootstrap은 꾸밈 요소들을 쉽게 꾸밀 수 있게 만들어놓은 사이트임
+    -> 시간을 훨씬 줄일 수 있기 때문에 해당 요소에 대한 설정을 진행해야 함
+
+bootstrap을 프로젝트에 활용할 수 있는 방법은 2가지가 있음
+
+    1. 그냥 생으로 다운 받는 방법 css and js
+        1. 다운로드
+        2. static 폴더 안에 집어넣어주면
+        3.  {% static %}
+            {link rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.min.css' %}"}
+            이 형태로 파일을 가져와서 활용할 수 있음
+        
+        4. 코드를 긁어와서 붙여넣기만 해도 해당 양식을 사용할 수 있음.
+        이런 식으로 static 파일을 관리하는 게 훨씬 더 유리함 / 저장 
+
+    2. CDN 방식 = 일반적으로 코딩에 쓰는 방식
+        1. 
