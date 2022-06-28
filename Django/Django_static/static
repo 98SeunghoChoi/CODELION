@@ -1,4 +1,4 @@
-static - 이론
+ static - 이론
 
     웹 서비스 내부에서 다루는 데이터는
         1. static 웹 서비스 내에서 사용자들을 위해 미리 준비된 데이터 (ex) css, JavaScript, image)

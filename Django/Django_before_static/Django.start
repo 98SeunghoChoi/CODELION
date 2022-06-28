@@ -102,12 +102,18 @@
 
 python --version                     / version 확인
 
-python -m venv myvenv               / myvenv라는 폴더를 만드는 것
+python -m venv myvenv               / myvenv라는 가상환경을 만드는 명령어
 
 source myvenv/bin/activate          / myvenv라는 폴더에 있는 bin이라는 폴더에 있는 activate 불러오기
-django-admin startproject myproject(이 자리에는 파일 이름) (많이 쓸 예정) 
+                                    / 가상환경 실행하기 
 
 pip install django
+
+
+django-admin startproject myproject(이 자리에는 파일 이름) (많이 쓸 예정) 
+                                    /django 명령어 중 startproject를 사용하고 해당 폴더 이름을 작성하면 project가 생성됨
+
+
 
 ------------------------------------------------------------------------------
 
@@ -165,14 +171,14 @@ settings.py 안 내용 파악
 
 --------------------------------------- ---------------------------------------
 
-1. clear
-1-1. python -m venv myvenv
-2. pip install Django
-3. cd codelion
-4. cd Django
+1. 폴더 만들기 
+    1-1. python -m venv myvenv
+2. myvenv/bin/activate 실행하면 가상환경 실행됨
+3. pip install Django
+4. pip freeze
 5. Django-admin startproject helloworld
 6. python manage.py runserver
-7. ctrl + C
+7. 
 8. python manage.py startapp myapp
 9. helloworld 안에 있는 settings.py 파일에 있는 INSTALLED_APPS 에 myapp 을 추가 해야 됨
 10. myapp 안에 templats라는 파일을 만들어서 index.html 문서를 만들어줌
